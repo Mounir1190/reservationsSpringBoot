@@ -1,4 +1,4 @@
-package be.iccbxl.pid.reservation_springboot.model;
+package be.iccbxl.pid.reservationsspringboot.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

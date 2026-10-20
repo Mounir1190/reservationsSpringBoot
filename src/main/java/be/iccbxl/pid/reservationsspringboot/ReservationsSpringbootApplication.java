@@ -1,4 +1,4 @@
-package be.iccbxl.pid.reservation_springboot;
+package be.iccbxl.pid.reservationsspringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
