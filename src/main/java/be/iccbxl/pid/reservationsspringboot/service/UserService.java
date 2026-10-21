@@ -58,24 +58,29 @@ public class UserService {
     }
 
     public void updateUserFromDto(UserProfileDto dto) {
-        User user = userRepository.findById(dto.getId())
-                .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
+        User user = userRepository.findById(dto.getId().longValue());
 
-        user.setFirstname(dto.getFirstname());
-        user.setLastname(dto.getLastname());
-        user.setEmail(dto.getEmail());
-        user.setLangue(dto.getLangue());
+        if (user != null) {
+            user.setFirstname(dto.getFirstname());
+            user.setLastname(dto.getLastname());
+            user.setEmail(dto.getEmail());
+            user.setLangue(dto.getLangue());
 
-        // Si un nouveau mot de passe est fourni et validé
-        if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
-            user.setPassword(passwordEncoder.encode(dto.getPassword()));
+            // Si un nouveau mot de passe est fourni et non vide
+            if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
+                user.setPassword(passwordEncoder.encode(dto.getPassword()));
+            }
+
+            userRepository.save(user);
         }
-
-        userRepository.save(user);
     }
  
     public void deleteUser(long id) {
         userRepository.deleteById(id);
     }
-}
 
+    public void deleteByLogin(String login) {
+        User user = userRepository.findByLogin(login);
+        userRepository.delete(user);
+    }
+}
