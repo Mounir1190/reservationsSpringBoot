@@ -41,7 +41,6 @@ public class RegistrationController {
 
         userService.registerFromDto(dto);
         redirAttrs.addFlashAttribute("successMessage", "Inscription réussie !");
-        return "redirect:login";
+        return "redirect:/login";
     }
 }
-
